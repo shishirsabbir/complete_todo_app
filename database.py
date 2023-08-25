@@ -3,10 +3,13 @@ from sqlalchemy import create_engine, Column, Integer, String, Boolean, ForeignK
 from sqlalchemy.orm import sessionmaker, declarative_base
 
 # database url
-SQLALCHEMY_DATABASE_URL = 'sqlite:///todosapp.db'
+# SQLALCHEMY_DATABASE_URL = 'sqlite:///todosapp.db' # for sqlite database
+SQLALCHEMY_DATABASE_URL = 'postgresql://postgres:test1234@localhost/TodoApplicationDatabase' # for postgres database
 
 # creating database engine
-engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False})
+# check_same_thread is only for sqlite databases
+# engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False})
+engine = create_engine(SQLALCHEMY_DATABASE_URL) # for postgresql database
 
 # creating a session instance
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
